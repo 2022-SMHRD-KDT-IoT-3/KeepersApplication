@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class BoardAdapter extends BaseAdapter {
+public class CareAdapter extends BaseAdapter {
 
-    private ArrayList<BoardVO> items = new ArrayList<BoardVO>();
+    private ArrayList<k_careVO> items = new ArrayList<k_careVO>();
 
-    public void addItem(int b_seq, String b_title, String b_id, String b_signdate) {
-        BoardVO vo = new BoardVO(b_seq, b_title, b_id, b_signdate);
+    public void addItem(String c_name, String c_phone, String c_address, String c_memo) {
+        k_careVO vo = new k_careVO(c_name, c_phone, c_address, c_memo);
         items.add(vo);
     }
 
@@ -47,24 +47,20 @@ public class BoardAdapter extends BaseAdapter {
 
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            // R.layout.보드리스트 이런식으로 수정해야함
-            view = inflater.inflate(R.layout.boardlist_customlistview, viewGroup, false);
+            view = inflater.inflate(R.layout.carelist_customlistview, viewGroup, false);
         }
 
+        TextView tv_carelist_name = view.findViewById(R.id.tv_carelist_name);
+        TextView tv_carelist_phone = view.findViewById(R.id.tv_carelist_phone);
+        TextView tv_carelist_address = view.findViewById(R.id.tv_carelist_address);
+        TextView tv_carelist_memo = view.findViewById(R.id.tv_carelist_memo);
 
-        TextView tv_seq = view.findViewById(R.id.tv_boardlist_seq);
-        TextView tv_title = view.findViewById(R.id.tv_boardlist_title);
-        TextView tv_id = view.findViewById(R.id.tv_boardlist_id);
-        TextView tv_signdate = view.findViewById(R.id.tv_boardlist_signdate);
+        k_careVO vo = items.get(i);
 
-
-        BoardVO vo = items.get(i);
-
-
-        tv_seq.setText(String.valueOf(vo.getB_seq()));
-        tv_title.setText(vo.getB_title());
-        tv_id.setText(vo.getB_id());
-        tv_signdate.setText(vo.getB_signdate());
+        tv_carelist_name.setText(vo.getC_name());
+        tv_carelist_phone.setText(vo.getC_phone());
+        tv_carelist_address.setText(vo.getC_address());
+        tv_carelist_memo.setText(vo.getC_memo());
 
         return view;
     }

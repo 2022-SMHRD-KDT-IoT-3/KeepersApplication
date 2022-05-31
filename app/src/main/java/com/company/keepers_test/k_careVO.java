@@ -13,6 +13,13 @@ public class k_careVO implements Serializable {
     private String c_address;
     private String c_memo;
 
+    public k_careVO(String c_name, String c_phone, String c_address, String c_memo) {
+        this.c_name = c_name;
+        this.c_phone = c_phone;
+        this.c_address = c_address;
+        this.c_memo = c_memo;
+    }
+
     public k_careVO() {
     }
 

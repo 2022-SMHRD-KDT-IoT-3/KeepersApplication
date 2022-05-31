@@ -42,7 +42,7 @@ public class BoardList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board_list);
 
-        board_List = findViewById(R.id.board_list);
+        board_List = findViewById(R.id.carelist_customview);
          // adapter.addItem(1,"test","test","test");
          // board_List.setAdapter(adapter);
          send_boardList_Request();

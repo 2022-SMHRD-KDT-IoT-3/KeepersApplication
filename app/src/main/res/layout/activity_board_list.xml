@@ -13,11 +13,11 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/board_list"
+        app:layout_constraintBottom_toTopOf="@+id/carelist_customview"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_seq2"
+            android:id="@+id/boardlist_seq"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -28,7 +28,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/tv_title2"
+            android:id="@+id/boardlist_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -39,7 +39,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/tv_id2"
+            android:id="@+id/boardlist_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -50,7 +50,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/tv_signdate2"
+            android:id="@+id/boardlist_signdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -63,7 +63,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/board_list"
+        android:id="@+id/carelist_customview"
         android:layout_width="411dp"
         android:layout_height="676dp"
         android:layout_marginTop="48dp"
