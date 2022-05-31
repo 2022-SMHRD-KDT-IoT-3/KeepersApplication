@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         tv_board.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Board.class);
+                Intent intent = new Intent(getApplicationContext(), BoardList.class);
                 startActivity(intent);
             }
         });
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         img_board.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Board.class);
+                Intent intent = new Intent(getApplicationContext(), BoardList.class);
                 startActivity(intent);
             }
         });

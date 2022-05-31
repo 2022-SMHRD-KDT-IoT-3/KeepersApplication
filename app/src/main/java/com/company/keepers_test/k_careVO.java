@@ -1,6 +1,10 @@
 package com.company.keepers_test;
 
-public class k_careVO {
+import java.io.Serializable;
+
+public class k_careVO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String c_manager_id;
     private String c_name;

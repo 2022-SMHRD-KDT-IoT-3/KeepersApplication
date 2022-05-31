@@ -30,6 +30,14 @@
         <activity
             android:name=".Board"
             android:exported="false" />
+
+        <activity
+            android:name=".BoardSelect"
+            android:exported="false" />
+        <activity
+            android:name=".BoardList"
+            android:exported="false" />
+
         <activity
             android:name=".Monitor"
             android:exported="false" />

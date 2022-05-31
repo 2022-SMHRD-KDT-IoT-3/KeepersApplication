@@ -1,14 +1,11 @@
 package com.company.keepers_test;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -21,6 +18,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,41 +26,50 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Care_Reg extends AppCompatActivity {
+public class BoardSelect extends AppCompatActivity {
 
-    private EditText edt_c_name, edt_c_address, edt_c_birth, edt_c_memo, edt_c_phone;
-    private Button btn_reg;
+    private TextView tv_select_title, tv_select_content, tv_select_id, tv_select_signdate;
+
     private RequestQueue requestQueue;
     private StringRequest stringRequest;
-    private boolean regCheck = false;
+
+    String b_title = "";
+    String b_content = "";
+    String b_id = "";
+    String b_signdate = "";
+    BoardVO vo = new BoardVO();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_care_reg);
+        setContentView(R.layout.activity_board_select);
 
-        edt_c_address = findViewById(R.id.edt_c_address);
-        edt_c_name = findViewById(R.id.edt_c_name);
-        edt_c_birth = findViewById(R.id.edt_c_birth);
-        edt_c_phone = findViewById(R.id.edt_c_phone);
-        btn_reg = findViewById(R.id.btn_reg);
 
-        btn_reg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                reg_sendRequest();
-                Log.v("Test", "Reg_Test");
-            }
-        });
+        tv_select_title = findViewById(R.id.tv_select_title);
+        tv_select_content = findViewById(R.id.tv_select_content);
+        tv_select_id = findViewById(R.id.tv_select_id);
+        tv_select_signdate = findViewById(R.id.tv_select_signdate);
+
+        Intent intent = getIntent();
+
+        vo = (BoardVO) intent.getSerializableExtra("vo");
+        Log.v("Test", vo.toString());
+
+        send_boardSelect_Request();
+
+//        tv_select_title.setText("테스트");
+//        tv_select_content.setText("테스트");
+//        tv_select_id.setText("테스트");
+//        tv_select_signdate.setText("테스트");
+
     }
 
-    public void reg_sendRequest() {
-        // RequestQueue 객체 생성
+    private void send_boardSelect_Request() {
+// RequestQueue 객체 생성
         requestQueue = Volley.newRequestQueue(this); // 현재 어플 정보 넘겨주기 -> this또는 getApplicationContext()
         //서버에 요청할 주소
-        // String url = "http://211.63.240.71/keepers/andCareInsert.do";
-        String url = "http://59.0.236.112:8081/keepers/andCareInsert.do";
-
+        String url = "http://59.0.236.112:8081/keepers/andBoardSelect.do";
 
         //stringRequest -> 요청시 필요한 문자열 객체
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -71,9 +78,35 @@ public class Care_Reg extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.v("resultValue", response);
 
-                // 케이리스트 페이지로 이동
-                Intent intent = new Intent(getApplicationContext(), CareList.class);
-                startActivity(intent);
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+
+                        // b_seq = jsonObject.getInt("b_seq");
+                        b_title = jsonObject.getString("b_title");
+                        b_content = jsonObject.getString("b_content");
+                        b_id = jsonObject.getString("b_id");
+                        b_signdate = jsonObject.getString("b_signdate");
+
+                    }
+
+                    Log.v("Test", b_title);
+                    Log.v("Test", b_content);
+                    Log.v("Test", b_id);
+                    Log.v("Test", b_signdate);
+
+                    tv_select_title.setText(b_title);
+                    tv_select_content.setText(b_content);
+                    tv_select_id.setText(b_id);
+                    tv_select_signdate.setText(b_signdate);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
 
             }
         }, new Response.ErrorListener() {
@@ -101,28 +134,14 @@ public class Care_Reg extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-
-
-                // 회원가입 정보 스프링으로 전송
-                String c_name = edt_c_name.getText().toString();
-                String c_address = edt_c_address.getText().toString();
-                String c_birth = edt_c_birth.getText().toString();
-                String c_phone = edt_c_phone.getText().toString();
-                String c_manager_id = SharedPreference.getAttribute(getApplicationContext(), "m_id");
-
-                params.put("c_manager_id", c_manager_id);
-                params.put("c_name", c_name);
-                params.put("c_address", c_address);
-                params.put("c_birth", c_birth);
-                params.put("c_phone", c_phone);
+                String b_seq = String.valueOf(vo.getB_seq());
+                Log.v("Test", b_seq);
+                params.put("b_seq", b_seq);
 
                 return params;
             }
         };
         stringRequest.setTag("main");
         requestQueue.add(stringRequest);
-
     }
-
-
 }
