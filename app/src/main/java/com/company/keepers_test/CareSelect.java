@@ -3,10 +3,12 @@ package com.company.keepers_test;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -19,6 +21,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +42,11 @@ public class CareSelect extends AppCompatActivity {
     private RequestQueue requestQueue;
     private StringRequest stringRequest;
     private String lastAct = "";
+    private ImageView iv_result;
+    private int[] imgArray = {R.drawable.on, R.drawable.off};
+
+    // private LineChart chart;
+    // private ArrayList<Entry> chart_items = new ArrayList<>();
 
     k_careVO vo = new k_careVO();
     ArrayList<ValueVO> items = new ArrayList<>();
@@ -47,6 +59,8 @@ public class CareSelect extends AppCompatActivity {
 
         tv_info = findViewById(R.id.tv_info);
         tv_info2 = findViewById(R.id.tv_info2);
+        iv_result = findViewById(R.id.iv_result);
+        // chart = findViewById(R.id.chart);
 
         Intent intent = getIntent();
         vo = (k_careVO) intent.getSerializableExtra("vo");
@@ -76,12 +90,22 @@ public class CareSelect extends AppCompatActivity {
                         String v_weight = jsonObject.getString("v_weight");
                         String v_signdate = jsonObject.getString("v_signdate");
 
+//                        Float chart_weight = Float.parseFloat(jsonObject.getString("v_weight"));
+//                        Float chart_signdate = Float.parseFloat(jsonObject.getString("v_signdate"));
+//                        Log.v("Chart", String.valueOf(chart_signdate));
+//                        Log.v("Chart", String.valueOf(chart_weight));
+
                         ValueVO valueVO = new ValueVO(v_weight, v_signdate);
                         Log.v("Test", valueVO.toString());
                         items.add(valueVO);
+//                        chart_items.add(new Entry(chart_signdate, chart_weight));
+
+
                         // adapter.addItem(c_name, c_phone, c_address, c_memo);
 
                     }
+
+//                    chart();
 
                     Log.v("Test", String.valueOf(items));
 
@@ -89,18 +113,23 @@ public class CareSelect extends AppCompatActivity {
 
                     for (int i = 0; i < items.size(); i++) {
                         result_weight[i] = Double.parseDouble(items.get(i).getV_weight());
-                        Log.v("Test", items.get(i).getV_weight());
+                        Log.v("Test", items.get(i).getV_weight()+""+i);
                         if (Double.parseDouble(items.get(i).getV_weight()) > 10) {
-                            Log.v("Test", items.get(i).getV_signdate());
+                            Log.v("Test", items.get(i).getV_signdate() + "" + i);
                              lastAct = items.get(i).getV_signdate();
+                             break;
                          }
                     }
 
 
                     if (result_weight[0] > 10) {
                         tv_info2.setText("활동중");
+                        iv_result.setImageResource(imgArray[0]);
+
+
                     } else {
                         tv_info2.setText("무반응");
+                        iv_result.setImageResource(imgArray[1]);
                     }
 
                     Log.v("Test", lastAct);
@@ -160,4 +189,26 @@ public class CareSelect extends AppCompatActivity {
         stringRequest.setTag("main");
         requestQueue.add(stringRequest);
     }
+
+//    public void chart() {
+//
+//        chart.setDragEnabled(true);
+//        chart.setScaleEnabled(false);
+//
+//        LineDataSet set1 = new LineDataSet(chart_items, "Data Set 1");
+//
+//        set1.setFillAlpha(110);
+//        set1.setColor(Color.BLUE);
+//        set1.setLineWidth(5f);
+//        set1.setValueTextSize(10f);
+//        set1.setValueTextColor(Color.RED);
+//
+//        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+//        dataSets.add(set1);
+//
+//        LineData data = new LineData(dataSets);
+//        chart.setData(data);
+//
+//    }
+
 }
