@@ -10,11 +10,11 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="84dp"
-        android:text="게시판 페이지"
-        android:textSize="36sp"
+        android:layout_marginTop="40dp"
+        android:text="공지사항"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
