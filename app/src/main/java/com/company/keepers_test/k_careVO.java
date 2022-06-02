@@ -6,12 +6,52 @@ public class k_careVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private int c_seq;
     private String c_manager_id;
     private String c_name;
     private String c_age;
     private String c_phone;
     private String c_address;
     private String c_memo;
+
+    public k_careVO(int c_seq, String c_name, String c_phone, String c_address, String c_memo) {
+        this.c_seq = c_seq;
+        this.c_name = c_name;
+        this.c_phone = c_phone;
+        this.c_address = c_address;
+        this.c_memo = c_memo;
+    }
+
+    @Override
+    public String toString() {
+        return "k_careVO{" +
+                "c_seq=" + c_seq +
+                ", c_manager_id='" + c_manager_id + '\'' +
+                ", c_name='" + c_name + '\'' +
+                ", c_age='" + c_age + '\'' +
+                ", c_phone='" + c_phone + '\'' +
+                ", c_address='" + c_address + '\'' +
+                ", c_memo='" + c_memo + '\'' +
+                '}';
+    }
+
+    public k_careVO(int c_seq, String c_manager_id, String c_name, String c_age, String c_phone, String c_address, String c_memo) {
+        this.c_seq = c_seq;
+        this.c_manager_id = c_manager_id;
+        this.c_name = c_name;
+        this.c_age = c_age;
+        this.c_phone = c_phone;
+        this.c_address = c_address;
+        this.c_memo = c_memo;
+    }
+
+    public int getC_seq() {
+        return c_seq;
+    }
+
+    public void setC_seq(int c_seq) {
+        this.c_seq = c_seq;
+    }
 
     public k_careVO(String c_name, String c_phone, String c_address, String c_memo) {
         this.c_name = c_name;
@@ -30,18 +70,6 @@ public class k_careVO implements Serializable {
         this.c_phone = c_phone;
         this.c_address = c_address;
         this.c_memo = c_memo;
-    }
-
-    @Override
-    public String toString() {
-        return "k_careVO{" +
-                "c_manager_id='" + c_manager_id + '\'' +
-                ", c_name='" + c_name + '\'' +
-                ", c_age='" + c_age + '\'' +
-                ", c_phone='" + c_phone + '\'' +
-                ", c_address='" + c_address + '\'' +
-                ", c_memo='" + c_memo + '\'' +
-                '}';
     }
 
     public String getC_manager_id() {

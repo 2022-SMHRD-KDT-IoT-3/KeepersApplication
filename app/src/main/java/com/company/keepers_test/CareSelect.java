@@ -25,14 +25,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CareSelect extends AppCompatActivity {
 
-    private TextView tv_info;
+    private TextView tv_info, tv_info2;
     private RequestQueue requestQueue;
     private StringRequest stringRequest;
+    private String lastAct = "";
+
+    k_careVO vo = new k_careVO();
+    ArrayList<ValueVO> items = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,37 +46,67 @@ public class CareSelect extends AppCompatActivity {
         setContentView(R.layout.activity_care_select);
 
         tv_info = findViewById(R.id.tv_info);
+        tv_info2 = findViewById(R.id.tv_info2);
 
-        send_ValueSelect_Request();
+        Intent intent = getIntent();
+        vo = (k_careVO) intent.getSerializableExtra("vo");
+        Log.v("Test", vo.toString());
+
+        send_andMonitorAct_Request();
     }
 
-    private void send_ValueSelect_Request() {
+    private void send_andMonitorAct_Request() {
 // RequestQueue 객체 생성
         requestQueue = Volley.newRequestQueue(this); // 현재 어플 정보 넘겨주기 -> this또는 getApplicationContext()
         //서버에 요청할 주소
         // String url = "http://211.63.240.71:8081/keepers/careList.do";
-        String url = "http://59.0.236.112:8081/keepers/andValueSelect.do";
+        String url = "http://59.0.236.112:8081/keepers/andMonitoringAct.do";
 
         //stringRequest -> 요청시 필요한 문자열 객체
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             // 응답데이터를 받아오는 곳
             @Override
             public void onResponse(String response) {
-                Log.v("resultValue", response);
+                Log.v("Test", response);
 
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-//                            String c_name = jsonObject.getString("c_name");
-//                            String c_birth = jsonObject.getString("c_birth");
-//                            String c_phone = jsonObject.getString("c_phone");
-//                            String c_address = jsonObject.getString("c_address");
-//                            String c_memo = jsonObject.getString("c_memo");
+                        String v_weight = jsonObject.getString("v_weight");
+                        String v_signdate = jsonObject.getString("v_signdate");
 
+                        ValueVO valueVO = new ValueVO(v_weight, v_signdate);
+                        Log.v("Test", valueVO.toString());
+                        items.add(valueVO);
                         // adapter.addItem(c_name, c_phone, c_address, c_memo);
 
                     }
+
+                    Log.v("Test", String.valueOf(items));
+
+                    Double[] result_weight = new Double[items.size()];
+
+                    for (int i = 0; i < items.size(); i++) {
+                        result_weight[i] = Double.parseDouble(items.get(i).getV_weight());
+                        Log.v("Test", items.get(i).getV_weight());
+                        if (Double.parseDouble(items.get(i).getV_weight()) > 10) {
+                            Log.v("Test", items.get(i).getV_signdate());
+                             lastAct = items.get(i).getV_signdate();
+                         }
+                    }
+
+
+                    if (result_weight[0] > 10) {
+                        tv_info2.setText("활동중");
+                    } else {
+                        tv_info2.setText("무반응");
+                    }
+
+                    Log.v("Test", lastAct);
+                    tv_info.setText(lastAct.toString());
+
+
 
                     // carelist_customview.setAdapter(adapter);
 
@@ -116,9 +152,8 @@ public class CareSelect extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
 
-                String c_manager_id = SharedPreference.getAttribute(getApplicationContext(), "m_id");
-                params.put("c_manager_id", c_manager_id);
-
+                // String c_manager_id = SharedPreference.getAttribute(getApplicationContext(), "m_id");
+                params.put("d_c_seq", String.valueOf(vo.getC_seq()));
                 return params;
             }
         };

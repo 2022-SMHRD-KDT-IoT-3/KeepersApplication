@@ -72,12 +72,12 @@ public class CareList extends AppCompatActivity {
                     for (int i = 0; i< jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String c_name = jsonObject.getString("c_name");
-                        String c_birth = jsonObject.getString("c_birth");
+                        int c_seq = Integer.parseInt(jsonObject.getString("c_seq"));
                         String c_phone = jsonObject.getString("c_phone");
                         String c_address = jsonObject.getString("c_address");
                         String c_memo = jsonObject.getString("c_memo");
 
-                        adapter.addItem(c_name, c_phone, c_address, c_memo);
+                        adapter.addItem(c_seq, c_name, c_phone, c_address, c_memo);
 
                     }
 
@@ -89,8 +89,7 @@ public class CareList extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             k_careVO vo = (k_careVO) adapterView.getItemAtPosition(i);
-
-                            // Toast.makeText(getApplicationContext(), vo.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), vo.toString(), Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(getApplicationContext(), CareSelect.class);
                             intent.putExtra("vo", vo);

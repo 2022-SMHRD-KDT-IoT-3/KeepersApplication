@@ -13,8 +13,8 @@ public class CareAdapter extends BaseAdapter {
 
     private ArrayList<k_careVO> items = new ArrayList<k_careVO>();
 
-    public void addItem(String c_name, String c_phone, String c_address, String c_memo) {
-        k_careVO vo = new k_careVO(c_name, c_phone, c_address, c_memo);
+    public void addItem(int c_seq, String c_name, String c_phone, String c_address, String c_memo) {
+        k_careVO vo = new k_careVO(c_seq, c_name, c_phone, c_address, c_memo);
         items.add(vo);
     }
 
