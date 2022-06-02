@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     // 푸쉬알림 코드 추가
-    id 'com.google.gms.google-services'
 }
 
 android {
@@ -51,14 +50,15 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // 푸쉬 알림 코드
-    implementation platform('com.google.firebase:firebase-bom:26.8.0')
-    implementation 'com.google.firebase:firebase-analytics'
+    /*implementation platform('com.google.firebase:firebase-bom:26.8.0')
+    implementation 'com.google.firebase:firebase-analytics'*/
     // implementation 'com.google.firebase:firebase-messaging-ktx'
+    implementation 'com.google.firebase:firebase-messaging:23.0.5'
     // JSON의 자바 오브젝트의 직렬화, 역직렬화
     implementation 'com.google.code.gson:gson:2.8.5'
     // okhttp3
     implementation 'com.squareup.okhttp3:okhttp:3.4.1'
-    implementation 'com.google.firebase:firebase-messaging:23.0.5'
+
     // implementation 'com.google.firebase:firebase-messaging:17.0.0
 
     //GIF 파일 재생
@@ -68,5 +68,4 @@ dependencies {
 
 }
 
-apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'

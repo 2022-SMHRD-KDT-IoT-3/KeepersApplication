@@ -13,11 +13,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Keepers_Test"
         android:usesCleartextTraffic="true">
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/keepers"/>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/white" />
+
         <activity
             android:name=".CareSelect"
-            android:exported="false" />
-        <!-- 푸쉬 알림 -->
-        <!-- 푸쉬 알림 -->
+            android:exported="false" /> <!-- 푸쉬 알림 -->
         <!-- intro 로고 나오는 부분 -->
         <activity
             android:name=".IntroActivity"
@@ -28,27 +43,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".Board"
             android:exported="false" />
         <activity
             android:name=".BoardSelect"
-            android:exported="true"/>
-
+            android:exported="true" />
         <activity
             android:name=".BoardList"
-            android:exported="true"/>
-
-
+            android:exported="true" />
         <activity
             android:name=".Monitor"
             android:exported="false" />
         <activity
             android:name=".CareList"
             android:exported="true" />
-
         <activity
             android:name=".RegSuccess"
             android:exported="false" />

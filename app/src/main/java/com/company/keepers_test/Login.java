@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -25,6 +26,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -59,6 +63,20 @@ public class Login extends AppCompatActivity {
         edt_pw = findViewById(R.id.edt_pw);
         //체크박스 로그인저장
         cb_id = findViewById(R.id.cb_id);
+
+        //firebase
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                if (!task.isSuccessful()){
+                    Log.w("Main", "토큰 가져오는 데 실패", task.getException());
+                    return;
+                }
+
+                String newToken = task.getResult();
+                Log.v("token", newToken);
+            }
+        });
 
         boolean boo = PreferenceManager.getBoolean(mContext, "check"); //로그인 정보 기억하기 체크 유무 확인
         if (boo) { // 체크가 되어있다면 아래 코드를 수행
@@ -105,7 +123,8 @@ public class Login extends AppCompatActivity {
         //서버에 요청할 주소
         // String url = "http://211.63.240.71:8081/keepers/andLogin.do";
         // String url = "http://211.63.240.71:8081/keepers/andLogin.do";
-        String url = "http://59.0.236.112:8081/keepers/andLoginSelect.do";
+        // String url = "http://59.0.237.241:8081/keepers/andLoginSelect.do";
+        String url = "http://59.0.147.241:8081/keepers/andLoginSelect.do";
 
 
 
