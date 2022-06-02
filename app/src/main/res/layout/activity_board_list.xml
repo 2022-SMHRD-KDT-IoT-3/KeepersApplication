@@ -8,65 +8,112 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="413dp"
+        android:layout_height="46dp"
         android:layout_gravity="center"
         android:layout_weight="1"
+        android:background="#4EFF9800"
         android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/carelist_customview"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/boardlist_seq"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="게시판 번호"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/boardlist_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="글 제목"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/boardlist_seq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="#"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/boardlist_phone"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="작성자"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/boardlist_signdate"
+            <TextView
+                android:id="@+id/boardlist_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="제목"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="작성일자"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/boardlist_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="작성자"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/boardlist_signdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="작성일자"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+        </LinearLayout>
 
     </LinearLayout>
 
     <ListView
         android:id="@+id/carelist_customview"
-        android:layout_width="411dp"
-        android:layout_height="676dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="404dp"
+        android:layout_height="526dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.898" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="공지사항"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
 </androidx.constraintlayout.widget.ConstraintLayout>
