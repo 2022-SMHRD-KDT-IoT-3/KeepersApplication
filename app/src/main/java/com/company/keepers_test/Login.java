@@ -104,8 +104,8 @@ public class Login extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this); // 현재 어플 정보 넘겨주기 -> this또는 getApplicationContext()
         //서버에 요청할 주소
         // String url = "http://211.63.240.71:8081/keepers/andLogin.do";
-        String url = "http://211.63.240.71:8081/keepers/andLogin.do";
-        //String url = "http://59.0.236.112:8081/keepers/andLogin.do";
+        // String url = "http://211.63.240.71:8081/keepers/andLogin.do";
+        String url = "http://59.0.236.112:8081/keepers/andLoginSelect.do";
 
 
 
