@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Keepers_Test"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".CareSelect"
+            android:exported="false" />
         <!-- 푸쉬 알림 -->
         <!-- 푸쉬 알림 -->
         <!-- intro 로고 나오는 부분 -->
@@ -26,18 +28,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Board"
             android:exported="false" />
-
         <activity
             android:name=".BoardSelect"
             android:exported="false" />
         <activity
             android:name=".BoardList"
             android:exported="false" />
-
         <activity
             android:name=".Monitor"
             android:exported="false" />
@@ -50,14 +49,12 @@
         <activity
             android:name=".Care_Reg"
             android:exported="true" />
-
         <activity
             android:name=".Login"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-
     </application>
 
 </manifest>

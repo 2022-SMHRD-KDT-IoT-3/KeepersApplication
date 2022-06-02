@@ -2,6 +2,7 @@ package com.company.keepers_test;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -88,7 +89,13 @@ public class CareList extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             k_careVO vo = (k_careVO) adapterView.getItemAtPosition(i);
-                            Toast.makeText(getApplicationContext(), vo.toString(), Toast.LENGTH_SHORT).show();
+
+                            // Toast.makeText(getApplicationContext(), vo.toString(), Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(getApplicationContext(), CareSelect.class);
+                            intent.putExtra("vo", vo);
+                            startActivity(intent);
+
                         }
                     });
 
