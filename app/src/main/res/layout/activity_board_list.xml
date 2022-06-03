@@ -12,8 +12,9 @@
         android:layout_height="46dp"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:background="#4EFF9800"
+        android:background="#82FF8522"
         android:gravity="center"
+        android:padding="10sp"
         app:layout_constraintBottom_toTopOf="@+id/carelist_customview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -97,23 +98,22 @@
         android:layout_width="404dp"
         android:layout_height="526dp"
         android:layout_marginEnd="4dp"
+        android:padding="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.898" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="146dp"
+        android:layout_height="61dp"
         android:layout_marginTop="16dp"
-        android:text="공지사항"
-        android:textSize="22sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.478"
+        app:srcCompat="@drawable/boar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

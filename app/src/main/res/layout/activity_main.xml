@@ -54,7 +54,7 @@
         android:id="@+id/tv_monitor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="모니터링"
+        android:text="내 정보"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -115,26 +115,6 @@
         app:srcCompat="@drawable/board" />
 
     <ImageView
-        android:id="@+id/img_monitor"
-        android:layout_width="129dp"
-        android:layout_height="94dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintEnd_toStartOf="@+id/img_board"
-        app:layout_constraintHorizontal_bias="0.809"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_reg"
-        app:srcCompat="@drawable/monitor" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navi"
-        android:layout_width="407dp"
-        android:layout_height="73dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
         android:id="@+id/img_list"
         android:layout_width="130sp"
         android:layout_height="100sp"
@@ -143,5 +123,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/select" />
+
+    <ImageView
+        android:id="@+id/img_monitor"
+        android:layout_width="130sp"
+        android:layout_height="100sp"
+        android:layout_marginStart="68dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reg"
+        app:layout_constraintVertical_bias="0.214"
+        app:srcCompat="@drawable/mine" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
