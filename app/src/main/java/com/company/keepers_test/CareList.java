@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -98,7 +99,7 @@ public class CareList extends AppCompatActivity {
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             // 클릭한 정보 vo에 담기
                             k_careVO vo = (k_careVO) adapterView.getItemAtPosition(i);
-                            // Toast.makeText(getApplicationContext(), vo.toString(), Toast.LENGTH_SHORT).show();
+                             Toast.makeText(getApplicationContext(), vo.getC_name() + "님 모니터링 페이지 이동", Toast.LENGTH_SHORT).show();
                             // 인텐트에 vo를 담아서 관리대상 선택(모니터링) 페이지로 이동
                             Intent intent = new Intent(getApplicationContext(), CareSelect.class);
                             intent.putExtra("vo", vo);

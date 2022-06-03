@@ -77,7 +77,7 @@ public class CareSelect extends AppCompatActivity {
 // RequestQueue 객체 생성
         requestQueue = Volley.newRequestQueue(this); // 현재 어플 정보 넘겨주기 -> this또는 getApplicationContext()
         //서버에 요청할 주소
-        String url = R.string.KeepersIP +"/andMonitoringAct.do";
+        String url = getString(R.string.KeepersIP) +"/andMonitoringAct.do";
 
         //stringRequest -> 요청시 필요한 문자열 객체
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -139,7 +139,7 @@ public class CareSelect extends AppCompatActivity {
                     // Log.v("Test", lastAct);
 
                     // result_bat 값으로 텍스트 변경
-                    tv_info3.setText(lastBat);
+                    tv_info3.setText(lastBat+"%");
 
                     // lastAct 값으로 텍스트 변경
                     tv_info.setText(lastAct.toString());
