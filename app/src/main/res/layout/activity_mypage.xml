@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Mypage"
-    android:background="@drawable/back3">
+    android:background="@drawable/mypageback">
 
     <ImageView
         android:id="@+id/iv_back3"
@@ -21,15 +21,16 @@
         android:id="@+id/imageView2"
         android:layout_width="105dp"
         android:layout_height="58dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/myinfo" />
 
     <LinearLayout
-        android:layout_width="257dp"
-        android:layout_height="362dp"
+        android:layout_width="229dp"
+        android:layout_height="370dp"
+        android:layout_marginTop="60dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
