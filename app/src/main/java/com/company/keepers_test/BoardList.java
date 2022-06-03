@@ -36,7 +36,7 @@ public class BoardList extends AppCompatActivity {
     private BoardAdapter adapter = new BoardAdapter();
     private RequestQueue requestQueue;
     private StringRequest stringRequest;
-
+    //a
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

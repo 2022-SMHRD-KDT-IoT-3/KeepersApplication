@@ -13,11 +13,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Keepers_Test"
         android:usesCleartextTraffic="true">
+        <!-- 푸쉬 알림 -->
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/keepers"/>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/white" />
+
         <activity
             android:name=".CareSelect"
             android:exported="false" />
-        <!-- 푸쉬 알림 -->
-        <!-- 푸쉬 알림 -->
         <!-- intro 로고 나오는 부분 -->
         <activity
             android:name=".IntroActivity"
