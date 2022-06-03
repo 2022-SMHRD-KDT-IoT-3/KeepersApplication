@@ -8,6 +8,12 @@ public class ValueVO {
     private String v_signdate ;
     private String v_bat;
 
+    public ValueVO(String v_weight, String v_signdate, String v_bat) {
+        this.v_weight = v_weight;
+        this.v_signdate = v_signdate;
+        this.v_bat = v_bat;
+    }
+
     public ValueVO() {
     }
 

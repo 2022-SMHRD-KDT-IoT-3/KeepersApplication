@@ -39,7 +39,7 @@ import java.util.Map;
 public class CareSelect extends AppCompatActivity {
 
     // 필요한 객체 선언
-    private TextView tv_info, tv_info2;
+    private TextView tv_info, tv_info2, tv_info3;
     private RequestQueue requestQueue;
     private StringRequest stringRequest;
     // 마지막 활동시간을 담을 변수 lastAct
@@ -60,6 +60,7 @@ public class CareSelect extends AppCompatActivity {
 
         tv_info = findViewById(R.id.tv_info);
         tv_info2 = findViewById(R.id.tv_info2);
+        tv_info3 = findViewById(R.id.tv_info3);
         iv_result = findViewById(R.id.iv_result);
 
         // 인텐트 처리
@@ -90,8 +91,9 @@ public class CareSelect extends AppCompatActivity {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String v_weight = jsonObject.getString("v_weight");
                         String v_signdate = jsonObject.getString("v_signdate");
+                        String v_bat = jsonObject.getString("v_bat");
                         // 스프링에서 넘어온 v_weight와 v_signdate를 ValueVo에 담기
-                        ValueVO valueVO = new ValueVO(v_weight, v_signdate);
+                        ValueVO valueVO = new ValueVO(v_weight, v_signdate, v_bat);
                         // Log.v("Test", valueVO.toString());
                         // ValueVo를 어레이리스트에 담기
                         items.add(valueVO);
@@ -100,11 +102,13 @@ public class CareSelect extends AppCompatActivity {
 
                     // 어레이리스트에 담긴 v_weight를 담을 배열 생성
                     Double[] result_weight = new Double[items.size()];
+                    int[] result_bat = new int[items.size()];
 
 
                     for (int i = 0; i < items.size(); i++) {
                         // v_weight 담기
                         result_weight[i] = Double.parseDouble(items.get(i).getV_weight());
+                        result_bat[i] = Integer.parseInt(items.get(i).getV_bat());
                         // Log.v("Test", items.get(i).getV_weight() + "" + i);
 
                         // 무게 데이터 값이 10보다 클 경우
@@ -115,6 +119,7 @@ public class CareSelect extends AppCompatActivity {
                         }
                     }
 
+                    String lastBat = String.valueOf(result_bat[0]);
 
                     // 무게 데이터 최신 값이 10보다 클 경우
                     // 활동중으로 텍스트 변경, 이미지 변경
@@ -131,6 +136,9 @@ public class CareSelect extends AppCompatActivity {
                     }
 
                     // Log.v("Test", lastAct);
+
+                    // result_bat 값으로 텍스트 변경
+                    tv_info3.setText(lastBat);
 
                     // lastAct 값으로 텍스트 변경
                     tv_info.setText(lastAct.toString());
