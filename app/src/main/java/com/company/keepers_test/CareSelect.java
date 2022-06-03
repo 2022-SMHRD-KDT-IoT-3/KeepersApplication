@@ -44,12 +44,10 @@ public class CareSelect extends AppCompatActivity {
     private StringRequest stringRequest;
     // 마지막 활동시간을 담을 변수 lastAct
     private String lastAct = "";
-    // 생활반응에 따른
+    // 생활반응에 맞는 이미지를 나타낼 iv_result
     private ImageView iv_result;
+    // 이미지를 담고 있는 imgArray
     private int[] imgArray = {R.drawable.on, R.drawable.off};
-
-    // private LineChart chart;
-    // private ArrayList<Entry> chart_items = new ArrayList<>();
 
     k_careVO vo = new k_careVO();
     ArrayList<ValueVO> items = new ArrayList<>();
@@ -63,12 +61,13 @@ public class CareSelect extends AppCompatActivity {
         tv_info = findViewById(R.id.tv_info);
         tv_info2 = findViewById(R.id.tv_info2);
         iv_result = findViewById(R.id.iv_result);
-        // chart = findViewById(R.id.chart);
 
+        // 인텐트 처리
         Intent intent = getIntent();
         vo = (k_careVO) intent.getSerializableExtra("vo");
         Log.v("Test", vo.toString());
 
+        // 스프링 활동중 체크 요청
         send_andMonitorAct_Request();
     }
 
@@ -76,7 +75,6 @@ public class CareSelect extends AppCompatActivity {
 // RequestQueue 객체 생성
         requestQueue = Volley.newRequestQueue(this); // 현재 어플 정보 넘겨주기 -> this또는 getApplicationContext()
         //서버에 요청할 주소
-        // String url = "http://211.63.240.71:8081/keepers/careList.do";
         String url = "http://59.0.236.112:8081/keepers/andMonitoringAct.do";
 
         //stringRequest -> 요청시 필요한 문자열 객체
@@ -92,23 +90,11 @@ public class CareSelect extends AppCompatActivity {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String v_weight = jsonObject.getString("v_weight");
                         String v_signdate = jsonObject.getString("v_signdate");
-
-//                        Float chart_weight = Float.parseFloat(jsonObject.getString("v_weight"));
-//                        Float chart_signdate = Float.parseFloat(jsonObject.getString("v_signdate"));
-//                        Log.v("Chart", String.valueOf(chart_signdate));
-//                        Log.v("Chart", String.valueOf(chart_weight));
-
                         ValueVO valueVO = new ValueVO(v_weight, v_signdate);
                         Log.v("Test", valueVO.toString());
                         items.add(valueVO);
-//                        chart_items.add(new Entry(chart_signdate, chart_weight));
-
-
-                        // adapter.addItem(c_name, c_phone, c_address, c_memo);
-
                     }
 
-//                    chart();
 
                     Log.v("Test", String.valueOf(items));
 
@@ -116,12 +102,12 @@ public class CareSelect extends AppCompatActivity {
 
                     for (int i = 0; i < items.size(); i++) {
                         result_weight[i] = Double.parseDouble(items.get(i).getV_weight());
-                        Log.v("Test", items.get(i).getV_weight()+""+i);
+                        Log.v("Test", items.get(i).getV_weight() + "" + i);
                         if (Double.parseDouble(items.get(i).getV_weight()) > 10) {
                             Log.v("Test", items.get(i).getV_signdate() + "" + i);
-                             lastAct = items.get(i).getV_signdate();
-                             break;
-                         }
+                            lastAct = items.get(i).getV_signdate();
+                            break;
+                        }
                     }
 
 
@@ -137,7 +123,6 @@ public class CareSelect extends AppCompatActivity {
 
                     Log.v("Test", lastAct);
                     tv_info.setText(lastAct.toString());
-
 
 
                     // carelist_customview.setAdapter(adapter);
