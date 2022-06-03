@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Keepers_Test"
         android:usesCleartextTraffic="true">
+
         <!-- 푸쉬 알림 -->
         <service
             android:name=".MyFirebaseMessagingService"
