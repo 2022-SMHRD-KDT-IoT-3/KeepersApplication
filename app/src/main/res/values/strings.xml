@@ -7,8 +7,12 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <!---->
+    <string name="KeepersIP">http://211.63.240.71:8081/keepers</string>
+<!--    <string name="KeepersAdress">http://59.0.237.241:8081/keepers</string>-->
+
+
 </resources>

@@ -21,9 +21,6 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +29,7 @@ public class Care_Reg extends AppCompatActivity {
 
     // 필요한 객체 선언
     private EditText edt_c_name, edt_c_address, edt_c_birth, edt_c_memo, edt_c_phone;
-    private Button btn_reg;
+    private Button btn_reg, btn_cancel;
     private RequestQueue requestQueue;
     private StringRequest stringRequest;
     private boolean regCheck = false;
@@ -48,6 +45,7 @@ public class Care_Reg extends AppCompatActivity {
         edt_c_phone = findViewById(R.id.edt_c_phone);
         edt_c_memo = findViewById(R.id.edt_c_memo);
         btn_reg = findViewById(R.id.btn_reg);
+        btn_cancel = findViewById(R.id.btn_cancel);
 
         btn_reg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,14 +56,23 @@ public class Care_Reg extends AppCompatActivity {
                 finish();
             }
         });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "사용자 등록을 취소합니다.", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
     }
+
 
     public void reg_sendRequest() {
         // RequestQueue 객체 생성
         requestQueue = Volley.newRequestQueue(this); // 현재 어플 정보 넘겨주기 -> this또는 getApplicationContext()
         //서버에 요청할 주소
         // String url = "http://211.63.240.71:8081/keepers/andCareInsert.do";
-        String url = "http://59.0.236.112:8081/keepers/andCareInsert.do";
+        String url = getString(R.string.KeepersIP) +"/andCareInsert.do";
 
 
         //stringRequest -> 요청시 필요한 문자열 객체

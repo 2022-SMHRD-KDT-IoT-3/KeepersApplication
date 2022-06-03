@@ -3,8 +3,9 @@ package com.company.keepers_test;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,7 +34,7 @@ public class BoardSelect extends AppCompatActivity {
     private TextView tv_select_title, tv_select_content, tv_select_id, tv_select_signdate;
     private RequestQueue requestQueue;
     private StringRequest stringRequest;
-
+    private ImageView iv_back5;
     // 게시글 내용 담을 변수 생성
     String b_title = "";
     String b_content = "";
@@ -52,7 +53,14 @@ public class BoardSelect extends AppCompatActivity {
         tv_select_content = findViewById(R.id.tv_select_content);
         tv_select_id = findViewById(R.id.tv_select_id);
         tv_select_signdate = findViewById(R.id.tv_select_signdate);
+        iv_back5 = findViewById(R.id.iv_back5);
 
+        iv_back5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         // 인텐트에 담긴 정보 받아오기
         Intent intent = getIntent();
 
@@ -69,7 +77,7 @@ public class BoardSelect extends AppCompatActivity {
 // RequestQueue 객체 생성
         requestQueue = Volley.newRequestQueue(this); // 현재 어플 정보 넘겨주기 -> this또는 getApplicationContext()
         //서버에 요청할 주소
-        String url = "http://211.63.240.71:8081/keepers/andBoardSelect.do";
+        String url = getString(R.string.KeepersIP) +"/andBoardSelect.do";
 
         //stringRequest -> 요청시 필요한 문자열 객체
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

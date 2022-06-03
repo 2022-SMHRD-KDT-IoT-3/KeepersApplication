@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,6 +32,7 @@ import java.util.Map;
 public class BoardList extends AppCompatActivity {
 
     // 필요한 객체 선언
+    private ImageView iv_back;
     private ListView board_List;
     private BoardAdapter adapter = new BoardAdapter();
     private RequestQueue requestQueue;
@@ -43,7 +44,13 @@ public class BoardList extends AppCompatActivity {
         setContentView(R.layout.activity_board_list);
 
         board_List = findViewById(R.id.carelist_customview);
-
+        iv_back = findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         // 스프링 게시판 목록 조회 요청
         send_boardList_Request();
     }
@@ -52,7 +59,7 @@ public class BoardList extends AppCompatActivity {
 // RequestQueue 객체 생성
         requestQueue = Volley.newRequestQueue(this); // 현재 어플 정보 넘겨주기 -> this또는 getApplicationContext()
         //서버에 요청할 주소
-        String url = "http://211.63.240.71:8081/keepers/andBoardList.do";
+        String url = getString(R.string.KeepersIP) +"/andBoardList.do";
 
         //stringRequest -> 요청시 필요한 문자열 객체
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

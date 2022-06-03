@@ -7,9 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -27,13 +26,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CareList extends AppCompatActivity {
 
     // 필요한 객체 선언
+    private ImageView iv_back4;
     private ListView carelist_customview;
     private CareAdapter adapter = new CareAdapter();
     private RequestQueue requestQueue;
@@ -43,9 +42,15 @@ public class CareList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_care_list);
-
+        iv_back4 = findViewById(R.id.iv_back4);
         carelist_customview = findViewById(R.id.carelist_customview);
 
+        iv_back4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         // 스프링 사용자 리스트 요청
         send_CareList_Request();
     }
@@ -56,7 +61,7 @@ public class CareList extends AppCompatActivity {
         //서버에 요청할 주소
         // String url = "http://211.63.240.71:8081/keepers/careList.do";
 //         String url = "http://211.63.240.71:8081/keepers/andCareList.do";
-        String url = "http://211.63.240.71:8081/keepers/andCareList.do";
+        String url = getString(R.string.KeepersIP) +"/andCareList.do";
 
         //stringRequest -> 요청시 필요한 문자열 객체
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

@@ -3,11 +3,9 @@ package com.company.keepers_test;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,11 +19,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,6 +32,7 @@ import java.util.Map;
 public class CareSelect extends AppCompatActivity {
 
     // 필요한 객체 선언
+    private ImageView iv_back;
     private TextView tv_info, tv_info2, tv_info3;
     private RequestQueue requestQueue;
     private StringRequest stringRequest;
@@ -62,7 +56,14 @@ public class CareSelect extends AppCompatActivity {
         tv_info2 = findViewById(R.id.tv_info2);
         tv_info3 = findViewById(R.id.tv_info3);
         iv_result = findViewById(R.id.iv_result);
+        iv_back = findViewById(R.id.iv_back2);
 
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         // 인텐트 처리
         Intent intent = getIntent();
         vo = (k_careVO) intent.getSerializableExtra("vo");
@@ -76,7 +77,7 @@ public class CareSelect extends AppCompatActivity {
 // RequestQueue 객체 생성
         requestQueue = Volley.newRequestQueue(this); // 현재 어플 정보 넘겨주기 -> this또는 getApplicationContext()
         //서버에 요청할 주소
-        String url = "http://211.63.240.71:8081/keepers/andMonitoringAct.do";
+        String url = R.string.KeepersIP +"/andMonitoringAct.do";
 
         //stringRequest -> 요청시 필요한 문자열 객체
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
