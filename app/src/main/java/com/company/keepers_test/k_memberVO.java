@@ -1,5 +1,7 @@
 package com.company.keepers_test;
 
+// 회원 VO
+
 public class k_memberVO {
 
     private String m_id;

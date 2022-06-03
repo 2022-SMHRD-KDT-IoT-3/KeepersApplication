@@ -2,6 +2,8 @@ package com.company.keepers_test;
 
 import java.io.Serializable;
 
+// 관리대상 VO
+
 public class k_careVO implements Serializable {
 
     private static final long serialVersionUID = 1L;

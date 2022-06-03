@@ -90,52 +90,50 @@ public class CareSelect extends AppCompatActivity {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String v_weight = jsonObject.getString("v_weight");
                         String v_signdate = jsonObject.getString("v_signdate");
+                        // 스프링에서 넘어온 v_weight와 v_signdate를 ValueVo에 담기
                         ValueVO valueVO = new ValueVO(v_weight, v_signdate);
-                        Log.v("Test", valueVO.toString());
+                        // Log.v("Test", valueVO.toString());
+                        // ValueVo를 어레이리스트에 담기
                         items.add(valueVO);
                     }
+                    // Log.v("Test", String.valueOf(items));
 
-
-                    Log.v("Test", String.valueOf(items));
-
+                    // 어레이리스트에 담긴 v_weight를 담을 배열 생성
                     Double[] result_weight = new Double[items.size()];
 
+
                     for (int i = 0; i < items.size(); i++) {
+                        // v_weight 담기
                         result_weight[i] = Double.parseDouble(items.get(i).getV_weight());
-                        Log.v("Test", items.get(i).getV_weight() + "" + i);
+                        // Log.v("Test", items.get(i).getV_weight() + "" + i);
+
+                        // 무게 데이터 값이 10보다 클 경우
+                        // 해당 시간 값을 lastAct에 담기
                         if (Double.parseDouble(items.get(i).getV_weight()) > 10) {
-                            Log.v("Test", items.get(i).getV_signdate() + "" + i);
                             lastAct = items.get(i).getV_signdate();
                             break;
                         }
                     }
 
 
+                    // 무게 데이터 최신 값이 10보다 클 경우
+                    // 활동중으로 텍스트 변경, 이미지 변경
                     if (result_weight[0] > 10) {
                         tv_info2.setText("활동중");
                         iv_result.setImageResource(imgArray[0]);
 
 
+                        // 무게 데이터 최신 값이 10보다 작을 경우
+                        // 활동중으로 텍스트 변경, 이미지 변경
                     } else {
                         tv_info2.setText("무반응");
                         iv_result.setImageResource(imgArray[1]);
                     }
 
-                    Log.v("Test", lastAct);
+                    // Log.v("Test", lastAct);
+
+                    // lastAct 값으로 텍스트 변경
                     tv_info.setText(lastAct.toString());
-
-
-                    // carelist_customview.setAdapter(adapter);
-
-                    // adapter.notifyDataSetChanged();
-
-
-                    // adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, items);
-
-                    // CareList.setAdapter(adapter);
-                    // jsonObject에는 회원들의 정보가 담겨있다.
-                    // 회원들의 정보를 리스트뷰에 보이게 하시오
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -168,8 +166,7 @@ public class CareSelect extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-
-                // String c_manager_id = SharedPreference.getAttribute(getApplicationContext(), "m_id");
+                // 인텐트에서 넘어온 vo에 담긴 C_seq를 스프링으로 전송
                 params.put("d_c_seq", String.valueOf(vo.getC_seq()));
                 return params;
             }
@@ -177,26 +174,5 @@ public class CareSelect extends AppCompatActivity {
         stringRequest.setTag("main");
         requestQueue.add(stringRequest);
     }
-
-//    public void chart() {
-//
-//        chart.setDragEnabled(true);
-//        chart.setScaleEnabled(false);
-//
-//        LineDataSet set1 = new LineDataSet(chart_items, "Data Set 1");
-//
-//        set1.setFillAlpha(110);
-//        set1.setColor(Color.BLUE);
-//        set1.setLineWidth(5f);
-//        set1.setValueTextSize(10f);
-//        set1.setValueTextColor(Color.RED);
-//
-//        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-//        dataSets.add(set1);
-//
-//        LineData data = new LineData(dataSets);
-//        chart.setData(data);
-//
-//    }
 
 }

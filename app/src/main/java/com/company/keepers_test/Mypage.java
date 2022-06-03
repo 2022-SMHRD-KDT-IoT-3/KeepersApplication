@@ -31,6 +31,7 @@ import java.util.Map;
 
 public class Mypage extends AppCompatActivity {
 
+    // 필요한 객체 생성
     private TextView tv_myid, tv_myname, tv_myphone, tv_myemail;
     private RequestQueue requestQueue;
     private StringRequest stringRequest;
@@ -51,6 +52,7 @@ public class Mypage extends AppCompatActivity {
         tv_myphone = findViewById(R.id.tv_myphone);
         tv_myemail = findViewById(R.id.tv_myemail);
 
+        // 스프링 내 정보 조회 요청
         send_MyInfoSelect_Request();
 
     }
@@ -59,7 +61,6 @@ public class Mypage extends AppCompatActivity {
 // RequestQueue 객체 생성
         requestQueue = Volley.newRequestQueue(this); // 현재 어플 정보 넘겨주기 -> this또는 getApplicationContext()
         //서버에 요청할 주소
-        // String url = "http://211.63.240.71:8081/keepers/careList.do";
         String url = "http://59.0.236.112:8081/keepers/andMyInfoSelect.do";
 
         //stringRequest -> 요청시 필요한 문자열 객체
@@ -70,7 +71,7 @@ public class Mypage extends AppCompatActivity {
                 Log.v("resultValue", response);
 
                 try {
-                    // JSONArray jsonArray = new JSONArray(response);
+                    // 스프링에서 넘어온 jsonObect에 담긴 데이터를 변수에 담기
                     JSONObject jsonObject = new JSONObject(response);
                     m_id = jsonObject.getString("m_id");
                     m_pw = jsonObject.getString("m_pw");
@@ -78,22 +79,8 @@ public class Mypage extends AppCompatActivity {
                     m_phone = jsonObject.getString("m_phone");
                     m_email = jsonObject.getString("m_email");
 
-                    // JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-//                        String m_id = jsonObject.getString("m_id");
-//                        String m_pw = jsonObject.getString("m_pw");
-//                        String m_name = jsonObject.getString("m_name");
-//                        String m_phone = jsonObject.getString("m_phone");
-//
-//                        for (int i = 0; i< jsonArray.length(); i++) {
-//                        }
-
-                    Log.v("Test", m_id);
-                    Log.v("Test", m_pw);
-                    Log.v("Test", m_name);
-                    Log.v("Test", m_phone);
-                    Log.v("Test", m_email);
-
+                    // 받아온 데이터로 텍스트뷰 내용 변경
                     tv_myid.setText(m_id);
                     tv_myname.setText(m_name);
                     tv_myphone.setText(m_phone);
@@ -131,6 +118,7 @@ public class Mypage extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
 
+                // 스프링으로 로그인 한 아이디 정보 전송
                 String c_manager_id = SharedPreference.getAttribute(getApplicationContext(), "m_id");
                 Log.v("Test", "로그인아이디" + c_manager_id);
                 params.put("m_id", c_manager_id);

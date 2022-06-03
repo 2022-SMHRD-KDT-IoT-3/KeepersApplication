@@ -62,7 +62,6 @@ public class Care_Reg extends AppCompatActivity {
         // RequestQueue 객체 생성
         requestQueue = Volley.newRequestQueue(this); // 현재 어플 정보 넘겨주기 -> this또는 getApplicationContext()
         //서버에 요청할 주소
-        // String url = "http://211.63.240.71/keepers/andCareInsert.do";
         // String url = "http://211.63.240.71:8081/keepers/andCareInsert.do";
         String url = "http://59.0.236.112:8081/keepers/andCareInsert.do";
 
@@ -73,6 +72,12 @@ public class Care_Reg extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.v("resultValue", response);
+
+                if (response.equals("success")) {
+                    Toast.makeText(getApplicationContext(), edt_c_name.getText() + "님 등록이 성공하였습니다", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "사용자 등록이 실패하였습니다", Toast.LENGTH_SHORT).show();
+                }
 
                 // 관리대상 등록 후 케어리스트 페이지로 이동
                 Intent intent = new Intent(getApplicationContext(), CareList.class);
