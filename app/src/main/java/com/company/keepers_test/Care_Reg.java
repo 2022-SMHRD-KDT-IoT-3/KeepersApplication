@@ -54,6 +54,8 @@ public class Care_Reg extends AppCompatActivity {
             public void onClick(View view) {
                 reg_sendRequest();
                 Log.v("Test", "Reg_Test");
+                Toast.makeText(getApplicationContext(), "새로운 사용자가 등록되었습니다", Toast.LENGTH_LONG).show();
+                finish();
             }
         });
     }

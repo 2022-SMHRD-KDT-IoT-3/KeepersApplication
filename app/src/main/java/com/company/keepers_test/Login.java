@@ -97,6 +97,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 sendRequest();
                 Log.v("Test", "Test");
+                finish();
 
             }
         });
