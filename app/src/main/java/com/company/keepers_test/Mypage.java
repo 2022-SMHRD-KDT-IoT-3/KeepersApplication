@@ -61,7 +61,7 @@ public class Mypage extends AppCompatActivity {
 // RequestQueue 객체 생성
         requestQueue = Volley.newRequestQueue(this); // 현재 어플 정보 넘겨주기 -> this또는 getApplicationContext()
         //서버에 요청할 주소
-        String url = "http://59.0.236.112:8081/keepers/andMyInfoSelect.do";
+        String url = "http://211.63.240.71:8081/keepers/andMyInfoSelect.do";
 
         //stringRequest -> 요청시 필요한 문자열 객체
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

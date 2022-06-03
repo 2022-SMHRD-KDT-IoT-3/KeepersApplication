@@ -125,7 +125,7 @@ public class Login extends AppCompatActivity {
         //서버에 요청할 주소
         // String url = "http://59.0.237.241:8081/keepers/andLoginSelect.do";
         // String url = "http://59.0.147.241:8081/keepers/andLoginSelect.do";
-         String url = "http://59.0.236.112:8081/keepers/andLoginSelect.do";
+         String url = "http://211.63.240.71:8081/keepers/andLoginSelect.do";
 
 
 
