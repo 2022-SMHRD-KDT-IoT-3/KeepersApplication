@@ -30,6 +30,7 @@ import java.util.Map;
 
 public class Care_Reg extends AppCompatActivity {
 
+    // 필요한 객체 선언
     private EditText edt_c_name, edt_c_address, edt_c_birth, edt_c_memo, edt_c_phone;
     private Button btn_reg;
     private RequestQueue requestQueue;
@@ -45,6 +46,7 @@ public class Care_Reg extends AppCompatActivity {
         edt_c_name = findViewById(R.id.edt_c_name);
         edt_c_birth = findViewById(R.id.edt_c_birth);
         edt_c_phone = findViewById(R.id.edt_c_phone);
+        edt_c_memo = findViewById(R.id.edt_c_memo);
         btn_reg = findViewById(R.id.btn_reg);
 
         btn_reg.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +63,8 @@ public class Care_Reg extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this); // 현재 어플 정보 넘겨주기 -> this또는 getApplicationContext()
         //서버에 요청할 주소
         // String url = "http://211.63.240.71/keepers/andCareInsert.do";
-        String url = "http://211.63.240.71:8081/keepers/andCareInsert.do";
+        // String url = "http://211.63.240.71:8081/keepers/andCareInsert.do";
+        String url = "http://59.0.236.112:8081/keepers/andCareInsert.do";
 
 
         //stringRequest -> 요청시 필요한 문자열 객체
@@ -71,7 +74,7 @@ public class Care_Reg extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.v("resultValue", response);
 
-                // 케이리스트 페이지로 이동
+                // 관리대상 등록 후 케어리스트 페이지로 이동
                 Intent intent = new Intent(getApplicationContext(), CareList.class);
                 startActivity(intent);
 
@@ -108,12 +111,14 @@ public class Care_Reg extends AppCompatActivity {
                 String c_address = edt_c_address.getText().toString();
                 String c_birth = edt_c_birth.getText().toString();
                 String c_phone = edt_c_phone.getText().toString();
+                String c_memo = edt_c_memo.getText().toString();
                 String c_manager_id = SharedPreference.getAttribute(getApplicationContext(), "m_id");
 
                 params.put("c_manager_id", c_manager_id);
                 params.put("c_name", c_name);
                 params.put("c_address", c_address);
                 params.put("c_birth", c_birth);
+                params.put("c_memo", c_memo);
                 params.put("c_phone", c_phone);
 
                 return params;

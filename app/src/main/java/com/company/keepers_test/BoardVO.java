@@ -2,8 +2,10 @@ package com.company.keepers_test;
 
 import java.io.Serializable;
 
-public class BoardVO implements Serializable {
+// 인텐트를 통해 VO를 전송에 필요 : implements Serializable
+// private static final long serialVersionUID = 1L;
 
+public class BoardVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private int b_seq;

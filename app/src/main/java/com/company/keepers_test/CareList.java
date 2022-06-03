@@ -33,10 +33,8 @@ import java.util.Map;
 
 public class CareList extends AppCompatActivity {
 
+    // 필요한 객체 선언
     private ListView carelist_customview;
-//    private ArrayList<String> items = new ArrayList<~>();
-    // private ArrayList<String> items = new ArrayList<String>(); // 어댑터에 들어갈 데이터
-    // private ArrayAdapter<String> adapter;
     private CareAdapter adapter = new CareAdapter();
     private RequestQueue requestQueue;
     private StringRequest stringRequest;
@@ -47,10 +45,9 @@ public class CareList extends AppCompatActivity {
         setContentView(R.layout.activity_care_list);
 
         carelist_customview = findViewById(R.id.carelist_customview);
+
+        // 스프링 사용자 리스트 요청
         send_CareList_Request();
-//        items.add("테스트");
-//        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, items);
-//        CareList.setAdapter(adapter);
     }
 
     private void send_CareList_Request() {
@@ -61,15 +58,19 @@ public class CareList extends AppCompatActivity {
         String url = "http://211.63.240.71:8081/keepers/andCareList.do";
 
         //stringRequest -> 요청시 필요한 문자열 객체
-        stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>(){
+        stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             // 응답데이터를 받아오는 곳
             @Override
             public void onResponse(String response) {
-                Log.v("resultValue",response);
+                Log.v("resultValue", response);
+
+                // 1. 받아온 JsonArray를 jsonObject로 변환
+                // 2. 각각의 변수에 다시 담기
+                // 3. 커스텀뷰 어댑터에 다시 담기
 
                 try {
                     JSONArray jsonArray = new JSONArray(response);
-                    for (int i = 0; i< jsonArray.length(); i++) {
+                    for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String c_name = jsonObject.getString("c_name");
                         int c_seq = Integer.parseInt(jsonObject.getString("c_seq"));
@@ -81,29 +82,24 @@ public class CareList extends AppCompatActivity {
 
                     }
 
+                    // 어댑터에 담긴 데이터를 게시판리스트 커스텀뷰에 세팅
                     carelist_customview.setAdapter(adapter);
-
                     adapter.notifyDataSetChanged();
 
+                    // 커스텀뷰 클릭시 이벤트 처리
                     carelist_customview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            // 클릭한 정보 vo에 담기
                             k_careVO vo = (k_careVO) adapterView.getItemAtPosition(i);
-                            Toast.makeText(getApplicationContext(), vo.toString(), Toast.LENGTH_SHORT).show();
-
+                            // Toast.makeText(getApplicationContext(), vo.toString(), Toast.LENGTH_SHORT).show();
+                            // 인텐트에 vo를 담아서 관리대상 선택(모니터링) 페이지로 이동
                             Intent intent = new Intent(getApplicationContext(), CareSelect.class);
                             intent.putExtra("vo", vo);
                             startActivity(intent);
 
                         }
                     });
-
-                    // adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, items);
-
-                    // CareList.setAdapter(adapter);
-                    // jsonObject에는 회원들의 정보가 담겨있다.
-                    // 회원들의 정보를 리스트뷰에 보이게 하시오
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -117,7 +113,7 @@ public class CareList extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
-        }){
+        }) {
             @Override //response를 UTF8로 변경해주는 소스코드
             protected Response<String> parseNetworkResponse(NetworkResponse response) {
                 try {
@@ -136,7 +132,7 @@ public class CareList extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-
+                // 로그인 한 회원의 아이디 정보를 스프링으로 전송
                 String c_manager_id = SharedPreference.getAttribute(getApplicationContext(), "m_id");
                 params.put("c_manager_id", c_manager_id);
 

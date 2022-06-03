@@ -9,10 +9,15 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+// 게시판 커스텀 리스트 뷰 어뎁터
+
 public class BoardAdapter extends BaseAdapter {
 
     private ArrayList<BoardVO> items = new ArrayList<BoardVO>();
 
+
+    // 게시글 번호, 제목, 작성자, 작성시간을 vo에 담음
+    // vo를 어레이리스트에 다시 담음
     public void addItem(int b_seq, String b_title, String b_id, String b_signdate) {
         BoardVO vo = new BoardVO(b_seq, b_title, b_id, b_signdate);
         items.add(vo);
@@ -42,12 +47,11 @@ public class BoardAdapter extends BaseAdapter {
         // Adapter가 가지고 있는 item만큼 만들어놓은 xml에 틀에 맞게 넣어주는 메소드
         // 필수 구현
 
-        // 1. kakao.xml 불러오기
+        // 1. 보드리스트 커스텀리스트뷰.xml 불러오기
         Context context = viewGroup.getContext();
 
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            // R.layout.보드리스트 이런식으로 수정해야함
             view = inflater.inflate(R.layout.boardlist_customlistview, viewGroup, false);
         }
 
@@ -60,7 +64,7 @@ public class BoardAdapter extends BaseAdapter {
 
         BoardVO vo = items.get(i);
 
-
+// 서버값으로 텍스트뷰 내용을 수정
         tv_seq.setText(String.valueOf(vo.getB_seq()));
         tv_title.setText(vo.getB_title());
         tv_id.setText(vo.getB_id());

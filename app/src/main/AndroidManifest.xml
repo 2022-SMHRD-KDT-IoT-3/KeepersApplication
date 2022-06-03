@@ -59,6 +59,9 @@
             android:name=".Login"
             android:exported="true" />
         <activity
+            android:name=".Mypage"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true" />
     </application>

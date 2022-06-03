@@ -28,11 +28,12 @@ import java.util.Map;
 
 public class BoardSelect extends AppCompatActivity {
 
+    // 객체 선언하기
     private TextView tv_select_title, tv_select_content, tv_select_id, tv_select_signdate;
-
     private RequestQueue requestQueue;
     private StringRequest stringRequest;
 
+    // 게시글 내용 담을 변수 생성
     String b_title = "";
     String b_content = "";
     String b_id = "";
@@ -51,17 +52,15 @@ public class BoardSelect extends AppCompatActivity {
         tv_select_id = findViewById(R.id.tv_select_id);
         tv_select_signdate = findViewById(R.id.tv_select_signdate);
 
+        // 인텐트에 담긴 정보 받아오기
         Intent intent = getIntent();
 
+        // 보드리스트에서 보낸 vo 객체를 겟시리얼라이저블 명령어를 통해 처리
         vo = (BoardVO) intent.getSerializableExtra("vo");
         Log.v("Test", vo.toString());
 
+        // 스프링 게시글 선택 요청
         send_boardSelect_Request();
-
-//        tv_select_title.setText("테스트");
-//        tv_select_content.setText("테스트");
-//        tv_select_id.setText("테스트");
-//        tv_select_signdate.setText("테스트");
 
     }
 
@@ -78,24 +77,19 @@ public class BoardSelect extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.v("resultValue", response);
 
+                // 1. 받아온 JsonArray를 jsonObject로 변환
+                // 2. 각각의 변수에 다시 담기
+                // 3. 텍스트뷰 setText
+
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-
-                        // b_seq = jsonObject.getInt("b_seq");
                         b_title = jsonObject.getString("b_title");
                         b_content = jsonObject.getString("b_content");
                         b_id = jsonObject.getString("b_id");
                         b_signdate = jsonObject.getString("b_signdate");
-
                     }
-
-                    Log.v("Test", b_title);
-                    Log.v("Test", b_content);
-                    Log.v("Test", b_id);
-                    Log.v("Test", b_signdate);
 
                     tv_select_title.setText(b_title);
                     tv_select_content.setText(b_content);
@@ -134,6 +128,7 @@ public class BoardSelect extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
+                // 인텐트에서 받아온 B_seq를 스프링으로 전송
                 String b_seq = String.valueOf(vo.getB_seq());
                 Log.v("Test", b_seq);
                 params.put("b_seq", b_seq);

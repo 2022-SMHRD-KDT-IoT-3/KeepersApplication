@@ -38,10 +38,13 @@ import java.util.Map;
 
 public class CareSelect extends AppCompatActivity {
 
+    // 필요한 객체 선언
     private TextView tv_info, tv_info2;
     private RequestQueue requestQueue;
     private StringRequest stringRequest;
+    // 마지막 활동시간을 담을 변수 lastAct
     private String lastAct = "";
+    // 생활반응에 따른
     private ImageView iv_result;
     private int[] imgArray = {R.drawable.on, R.drawable.off};
 

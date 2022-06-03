@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+// 관리대상 조회페이지 커스텀리스트뷰
+
 public class CareAdapter extends BaseAdapter {
 
     private ArrayList<k_careVO> items = new ArrayList<k_careVO>();
@@ -39,10 +41,8 @@ public class CareAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
-        // Adapter가 가지고 있는 item만큼 만들어놓은 xml에 틀에 맞게 넣어주는 메소드
-        // 필수 구현
 
-        // 1. kakao.xml 불러오기
+        // 1. carelist_customlistview.xml 불러오기
         Context context = viewGroup.getContext();
 
         if (view == null) {
