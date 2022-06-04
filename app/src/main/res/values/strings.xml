@@ -11,8 +11,8 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <!---->
-    <!--<string name="KeepersIP">http://211.63.240.71:8081/keepers</string>-->
-    <string name="KeepersIP">http://59.0.236.112:8081/keepers</string>
+    <string name="KeepersIP">http://211.63.240.71:8081/keepers</string>
+   <!-- <string name="KeepersIP">http://59.0.236.112:8081/keepers</string>-->
 
 
 </resources>

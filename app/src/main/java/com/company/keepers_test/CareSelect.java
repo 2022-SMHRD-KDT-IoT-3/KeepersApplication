@@ -38,7 +38,7 @@ public class CareSelect extends AppCompatActivity {
     // 필요한 객체 선언
 
     // 생활반응에 맞는 이미지를 나타낼 iv_result
-    private ImageView iv_back, iv_phone, iv_result;
+    private ImageView iv_back, iv_result;
     private TextView tv_info, tv_info2, tv_info3, textView27, tv_phonecall;
     private RequestQueue requestQueue;
     private StringRequest stringRequest;
@@ -63,7 +63,6 @@ public class CareSelect extends AppCompatActivity {
         textView27 = findViewById(R.id.textView27);
         iv_result = findViewById(R.id.iv_result);
         iv_back = findViewById(R.id.iv_back2);
-        iv_phone = findViewById(R.id.iv_phone);
         tv_phonecall = findViewById(R.id.tv_phonecall);
 
         tv_phonecall.setOnClickListener(new View.OnClickListener() {
@@ -74,14 +73,14 @@ public class CareSelect extends AppCompatActivity {
             }
         });
 
-        iv_phone.setOnClickListener(new View.OnClickListener() {
+     /*   iv_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Log.v("phone", vo.getC_phone());
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+vo.getC_phone()));
                 startActivity(intent);
             }
-        });
+        });*/
 
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override

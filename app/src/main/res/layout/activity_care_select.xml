@@ -17,16 +17,6 @@
         app:srcCompat="@drawable/backbutton" />
 
     <ImageView
-        android:id="@+id/iv_phone"
-        android:layout_width="44dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="64dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_phonecall"
-        app:srcCompat="@android:drawable/ic_menu_call" />
-
-    <ImageView
         android:id="@+id/imageView5"
         android:layout_width="199dp"
         android:layout_height="51dp"
@@ -146,16 +136,16 @@
 
     <TextView
         android:id="@+id/tv_phonecall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="전화 연결"
-        android:textSize="25sp"
+        android:layout_width="300dp"
+        android:layout_height="42dp"
+        android:text="전화 연결을 원하시면 클릭하세요"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.134"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-        app:layout_constraintVertical_bias="0.549" />
+        app:layout_constraintVertical_bias="0.671" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
