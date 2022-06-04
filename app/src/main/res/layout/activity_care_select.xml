@@ -17,6 +17,16 @@
         app:srcCompat="@drawable/backbutton" />
 
     <ImageView
+        android:id="@+id/iv_phone"
+        android:layout_width="44dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_phonecall"
+        app:srcCompat="@android:drawable/ic_menu_call" />
+
+    <ImageView
         android:id="@+id/imageView5"
         android:layout_width="199dp"
         android:layout_height="51dp"
@@ -112,27 +122,40 @@
         android:id="@+id/tv_info3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="35sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.245"
+        app:layout_constraintHorizontal_bias="0.092"
         app:layout_constraintStart_toEndOf="@+id/textView27"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-        app:layout_constraintVertical_bias="0.441" />
+        app:layout_constraintVertical_bias="0.217" />
 
     <TextView
         android:id="@+id/textView27"
         android:layout_width="142dp"
         android:layout_height="45dp"
         android:text="배터리잔량"
-        android:textSize="30sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.223"
+        app:layout_constraintHorizontal_bias="0.156"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-        app:layout_constraintVertical_bias="0.457" />
+        app:layout_constraintVertical_bias="0.228" />
+
+    <TextView
+        android:id="@+id/tv_phonecall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전화 연결"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.134"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="0.549" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

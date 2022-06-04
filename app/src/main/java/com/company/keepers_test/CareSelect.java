@@ -3,12 +3,12 @@ package com.company.keepers_test;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -26,6 +26,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,14 +36,15 @@ import java.util.Map;
 public class CareSelect extends AppCompatActivity {
 
     // 필요한 객체 선언
-    private ImageView iv_back;
-    private TextView tv_info, tv_info2, tv_info3, textView27;
+
+    // 생활반응에 맞는 이미지를 나타낼 iv_result
+    private ImageView iv_back, iv_phone, iv_result;
+    private TextView tv_info, tv_info2, tv_info3, textView27, tv_phonecall;
     private RequestQueue requestQueue;
     private StringRequest stringRequest;
     // 마지막 활동시간을 담을 변수 lastAct
     private String lastAct = "";
-    // 생활반응에 맞는 이미지를 나타낼 iv_result
-    private ImageView iv_result;
+
     // 이미지를 담고 있는 imgArray
     private int[] imgArray = {R.drawable.on, R.drawable.off, R.drawable.error};
 
@@ -59,6 +63,25 @@ public class CareSelect extends AppCompatActivity {
         textView27 = findViewById(R.id.textView27);
         iv_result = findViewById(R.id.iv_result);
         iv_back = findViewById(R.id.iv_back2);
+        iv_phone = findViewById(R.id.iv_phone);
+        tv_phonecall = findViewById(R.id.tv_phonecall);
+
+        tv_phonecall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+vo.getC_phone()));
+                startActivity(intent);
+            }
+        });
+
+        iv_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Log.v("phone", vo.getC_phone());
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+vo.getC_phone()));
+                startActivity(intent);
+            }
+        });
 
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +92,8 @@ public class CareSelect extends AppCompatActivity {
         // 인텐트 처리
         Intent intent = getIntent();
         vo = (k_careVO) intent.getSerializableExtra("vo");
-        Log.v("Test", vo.toString());
+        // Log.v("Test", vo.toString());
+
 
         // 스프링 활동중 체크 요청
         send_andMonitorAct_Request();
@@ -137,6 +161,7 @@ public class CareSelect extends AppCompatActivity {
                     // 활동중으로 텍스트 변경, 이미지 변경
                     try {
                         if (result_weight[0] > 10) {
+
                             tv_info2.setText("활동중");
                             iv_result.setImageResource(imgArray[0]);
                             // 무게 데이터 최신 값이 10보다 작을 경우
